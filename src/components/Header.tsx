@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { AutocompleteComponent } from './Autocomplete';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchMovies } from '../store/actions';
 
-interface Props {
-  searchQuery: string;
-  setSearchQuery: (text: string) => void;
-}
 
-const Header: React.FC<Props> = ({ searchQuery, setSearchQuery }) => {
+const Header: React.FC = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const dispatch = useDispatch();
+  const movies = useSelector((state: any) => state.movies);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      dispatch(searchMovies(searchQuery) as any);
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Movie</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Search"
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-      />
+      <AutocompleteComponent movieData={movies} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
     </View>
   );
 };
@@ -25,8 +30,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    padding: 20,
-    justifyContent: 'space-between',
+    height: '100%',
+    justifyContent: 'space-around',
     alignItems: 'center'
   },
   heading: {

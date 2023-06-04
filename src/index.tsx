@@ -12,24 +12,13 @@ import HorizontalScroller from "./components/HorizantalScroller";
 import Footer from "./components/Footer";
 
 const App = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const dispatch = useDispatch();
-  const movies = useSelector((state: any) => state.movies);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      dispatch(searchMovies(searchQuery) as any);
-    }, 200);
-
-    return clearTimeout(timeoutId);
-  }, [searchQuery]);
 
   const movieType = ["Recommend", "Generic", "Science Fiction", "Comedy"];
 
   return (
     <View style={styles.container}>
-      <View style={{ height: '10%' }}>
-        <Header setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
+      <View style={{ height: '10%', zIndex: 1 }}>
+        <Header />
       </View>
       <View style={{ height: '80%' }}>
         <HorizontalScroller>
