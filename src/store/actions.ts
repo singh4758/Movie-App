@@ -1,10 +1,10 @@
 import axios from 'axios';
-
-const API_KEY = '';
+import { API_KEY } from "@env";
 
 export const searchMovies = (query: string) => {
   return async (dispatch: any) => {
     try {
+      
       const response = query ? await axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`): { data: { Search: []}};
       const { data } = response;
       dispatch({
