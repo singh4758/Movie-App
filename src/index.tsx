@@ -1,36 +1,34 @@
 import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
 } from "react-native";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import { searchMovies } from "./store/actions";
+import { Provider } from "react-redux";
 import store from "./store";
 import Header from "./components/Header";
-import HorizontalScroller from "./components/HorizantalScroller";
 import Footer from "./components/Footer";
+import { Movie } from "./modules/movie";
+import { Ranking } from "./modules/ranking";
+import { Find } from "./modules/find";
+import { Menu } from "./modules/menu";
 
 const App = () => {
 
-  const movieType = ["Recommend", "Generic", "Science Fiction", "Comedy"];
+  const [panel, setPanel] = useState(0);
 
   return (
     <View style={styles.container}>
       <View style={{ height: '10%', zIndex: 1 }}>
         <Header />
       </View>
-      <View style={{ height: '80%' }}>
-        <HorizontalScroller>
-          {movieType.map((type) => (
-            <View key={type} style={styles.movieTypeItem}>
-              <Text style={styles.typeText}>{type}</Text>
-            </View>
-          ))}
-        </HorizontalScroller>
+      <View style={{ height: '80%'}}>
+        {panel === 0 && <Movie />}
+        {panel === 1 && <Ranking />}
+        {panel === 2 && <Find />}
+        {panel === 3 && <Menu />}
       </View>
       <View style={{ height: '10%' }}>
-        <Footer />
+        <Footer setPanel={setPanel} />
       </View>
     </View>
   );
@@ -48,14 +46,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#181132",
     width: "100%",
     height: "100%",
-  },
-  movieTypeItem: {
-    height: 40,
-    padding: 10,
-    margin: 5,
-    backgroundColor: '#241749',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   typeText: {
     color: '#ccc'

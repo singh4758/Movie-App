@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
-    color: "#ccc",
   },
   listContainer: {
     width: '100%',
