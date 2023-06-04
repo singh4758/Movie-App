@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 interface Props {
   searchQuery: string;
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     paddingHorizontal: 10,
-    color: 'grey',
+    color: '#ccc',
     textAlign: 'center'
   },
 });
