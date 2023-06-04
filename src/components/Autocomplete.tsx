@@ -51,6 +51,7 @@ export const AutocompleteComponent: React.FC<Props> = ({
       inputContainerStyle={styles.inputContainer}
       listContainerStyle={styles.listContainer}
       hideResults={!movieData.length}
+      placeholder="Search"
       style={{
         backgroundColor: "#241749",
         textAlign: "center",

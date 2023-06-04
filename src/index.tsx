@@ -21,14 +21,14 @@ const App = () => {
       <View style={{ height: '10%', zIndex: 1 }}>
         <Header />
       </View>
-      <View style={{ height: '80%'}}>
+      <View style={{ height: '75%'}}>
         {panel === 0 && <Movie />}
         {panel === 1 && <Ranking />}
         {panel === 2 && <Find />}
         {panel === 3 && <Menu />}
       </View>
       <View style={{ height: '10%' }}>
-        <Footer setPanel={setPanel} />
+        <Footer setPanel={setPanel} panel={panel} />
       </View>
     </View>
   );
