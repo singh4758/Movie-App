@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'f3f20d0f';
+const API_KEY = '';
 
 export const searchMovies = (query: string) => {
   return async (dispatch: any) => {
